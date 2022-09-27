@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\Genius.Book.API.csproj": {}
+    "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\GeniusBook.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\Genius.Book.API.csproj": {
+    "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\GeniusBook.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\Genius.Book.API.csproj",
-        "projectName": "Genius.Book.API",
-        "projectPath": "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\Genius.Book.API.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\GeniusBook.API.csproj",
+        "projectName": "GeniusBook.API",
+        "projectPath": "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\GeniusBook.API.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\hp\\Documents\\Active\\Genius.Book.API.Proj\\Genius.Book.API\\obj\\",
         "projectStyle": "PackageReference",
@@ -41,6 +41,16 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
             },
