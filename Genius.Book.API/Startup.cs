@@ -62,6 +62,8 @@ namespace Genius.Book.API
             {
                 endpoints.MapControllers();
             });
+
+            AppDbSeeder.Seed(app);
         }
     }
 }
