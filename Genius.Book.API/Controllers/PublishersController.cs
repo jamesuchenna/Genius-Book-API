@@ -29,5 +29,12 @@ namespace GeniusBook.API.Controllers
             var response = _publisherService.GetPublisherData(id);
             return Ok(response);
         }
+
+        [HttpDelete("delete-publisher-by-id/{id}")]
+        public IActionResult DeletePublisherById(int id)
+        {
+            _publisherService.DeletePublisherById(id);
+            return Ok();
+        }
     }
 }

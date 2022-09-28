@@ -1,5 +1,6 @@
 ﻿using GeniusBook.API.Data.Model;
 using GeniusBook.API.Data.ViewModel;
+using System;
 using System.Linq;
 
 namespace GeniusBook.API.Data.Services
@@ -38,6 +39,17 @@ namespace GeniusBook.API.Data.Services
             }).FirstOrDefault();
 
             return _publisherData;
+        }
+
+        public void DeletePublisherById(int id)
+        {
+            var publisher = _context.Publishers.FirstOrDefault(n => n.Id == id);
+
+            if (publisher != null)
+            {
+                _context.Publishers.Remove(publisher);
+                _context.SaveChanges();
+            }
         }
     }
 }
