@@ -1,4 +1,5 @@
-﻿using GeniusBook.API.Data.ViewModel;
+﻿using GeniusBook.API.Data.Model;
+using GeniusBook.API.Data.ViewModel;
 using GeniusBooks.API.Data.Model;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace GeniusBook.API.Data.Services
             _context = context;
         }
 
-        public void AddBook(BookVM book)
+        public void AddBookWithAuthors(BookVM book)
         {
             var _book = new Book()
             {
@@ -26,16 +27,44 @@ namespace GeniusBook.API.Data.Services
                 Rate = book.IsRead ? book.Rate.Value : null,
                 Genre = book.Genre,
                 CoverUrl = book.CoverUrl,
-                Author = book.Author,
-                DateAdded = DateTime.Now
+                DateAdded = DateTime.Now,
+                PublisherId = book.PublisherId
             };
 
             _context.Books.Add(_book);
             _context.SaveChanges();
+
+            foreach (var id in book.AuthorIds)
+            {
+                var _book_author = new Book_Author()
+                {
+                    AuthorId = id,
+                    BookId = _book.Id
+                };
+
+                _context.Book_Authors.Add(_book_author);
+                _context.SaveChanges();
+            }
         }
 
         public List<Book> GetAllBooks() => _context.Books.ToList();
-        public Book GetABook(int bookId) => _context.Books.FirstOrDefault(n => n.Id == bookId);
+        public BookWithAuthorsVM GetABook(int bookId)
+        {
+            var _bookWithAuthors = _context.Books.Where(b => b.Id == bookId).Select(book => new BookWithAuthorsVM()
+            {
+                Title = book.Title,
+                Description = book.Description,
+                IsRead = book.IsRead,
+                DateRead = book.DateRead,
+                Rate = book.IsRead ? book.Rate.Value : null,
+                Genre = book.Genre,
+                CoverUrl = book.CoverUrl,
+                PublisherName = book.Publisher.Name,
+                AuthorNames = book.Book_Authors.Select(n => n.Author.FullName).ToList()
+            }).FirstOrDefault();
+
+            return _bookWithAuthors;
+        }
 
         public Book UpdateBookById(int bookId, BookVM book)
         {
@@ -53,7 +82,6 @@ namespace GeniusBook.API.Data.Services
             _book.Rate = book.IsRead ? book.Rate.Value : null;
             _book.Genre = book.Genre;
             _book.CoverUrl = book.CoverUrl;
-            _book.Author = book.Author;
 
             _context.SaveChanges();
 

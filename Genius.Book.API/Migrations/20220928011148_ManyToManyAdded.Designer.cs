@@ -4,14 +4,16 @@ using GeniusBook.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GeniusBook.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220928011148_ManyToManyAdded")]
+    partial class ManyToManyAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,6 +80,9 @@ namespace GeniusBook.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CoverUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -96,18 +101,18 @@ namespace GeniusBook.API.Migrations
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PublisherId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Rate")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("publisherId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("PublisherId");
+                    b.HasIndex("publisherId");
 
                     b.ToTable("Books");
                 });
@@ -135,7 +140,7 @@ namespace GeniusBook.API.Migrations
                 {
                     b.HasOne("GeniusBook.API.Data.Model.Publisher", "Publisher")
                         .WithMany("Books")
-                        .HasForeignKey("PublisherId")
+                        .HasForeignKey("publisherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

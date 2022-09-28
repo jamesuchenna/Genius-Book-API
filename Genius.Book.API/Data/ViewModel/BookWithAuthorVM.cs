@@ -1,10 +1,9 @@
-﻿using GeniusBook.API.Data.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace GeniusBook.API.Data.ViewModel
 {
-    public class BookVM
+    public class BookWithAuthorsVM
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -14,7 +13,7 @@ namespace GeniusBook.API.Data.ViewModel
         public string Genre { get; set; }
         public string CoverUrl { get; set; }
 
-        public int PublisherId { get; set; }
-        public List<int> AuthorIds { get; set; }
+        public string PublisherName { get; set; }
+        public List<string> AuthorNames { get; set; }
     }
 }

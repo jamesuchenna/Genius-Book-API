@@ -24,7 +24,6 @@ namespace GeniusBook.API.Data
                         DateRead = DateTime.Now.AddDays(-10),
                         Rate = 5,
                         Genre = "Christian",
-                        Author = "Jesus",
                         CoverUrl = "https...",
                         DateAdded = DateTime.Now
                     },
@@ -34,7 +33,6 @@ namespace GeniusBook.API.Data
                         Description = "Principles for building scalable software solutions",
                         IsRead = false,
                         Genre = "Tech",
-                        Author = "Anderson",
                         CoverUrl = "https...",
                         DateAdded = DateTime.Now
                     });

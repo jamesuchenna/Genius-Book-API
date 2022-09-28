@@ -16,10 +16,10 @@ namespace GeniusBook.API.Controllers
             _bookService = bookService;
         }
 
-        [HttpPost("add-book")]
+        [HttpPost("add-book-with-author")]
         public IActionResult AddBook([FromBody] BookVM book)
         {
-            _bookService.AddBook(book);
+            _bookService.AddBookWithAuthors(book);
             return Ok();
         }
 

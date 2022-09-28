@@ -39,6 +39,8 @@ namespace Genius.Book.API
 
             // Configure the services
             services.AddTransient<BookService>();
+            services.AddTransient<AuthorService>();
+            services.AddTransient<PublisherService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -67,7 +69,7 @@ namespace Genius.Book.API
                 endpoints.MapControllers();
             });
 
-            AppDbSeeder.Seed(app);
+            // AppDbSeeder.Seed(app);
         }
     }
 }
