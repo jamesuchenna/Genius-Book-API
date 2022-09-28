@@ -1,4 +1,5 @@
 using GeniusBook.API.Data;
+using GeniusBook.API.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,9 @@ namespace Genius.Book.API
 
             // Configure DBContext with SQL
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
+
+            // Configure the services
+            services.AddTransient<BookService>();
 
             services.AddSwaggerGen(c =>
             {
