@@ -2,7 +2,7 @@
 
 namespace GeniusBook.API.Data.Model
 {
-    public class Book_Author
+    public class Book_Authors
     {
         public int Id { get; set; }
 

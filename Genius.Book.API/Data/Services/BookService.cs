@@ -36,7 +36,7 @@ namespace GeniusBook.API.Data.Services
 
             foreach (var id in book.AuthorIds)
             {
-                var _book_author = new Book_Author()
+                var _book_author = new Book_Authors()
                 {
                     AuthorId = id,
                     BookId = _book.Id

@@ -1,5 +1,6 @@
 ﻿using GeniusBook.API.Data.Model;
 using GeniusBook.API.Data.ViewModel;
+using System.Linq;
 
 namespace GeniusBook.API.Data.Services
 {
@@ -20,8 +21,19 @@ namespace GeniusBook.API.Data.Services
                 FullName = author.FullName,
             };
 
-            _context.Author.Add(_author);
+            _context.Authors.Add(_author);
             _context.SaveChanges();
+        }
+
+        public AuthorWithBooksVM GetAuthorWithBooks(int authorId)
+        {
+            var _author = _context.Authors.Where(a => a.Id == authorId).Select(a => new AuthorWithBooksVM()
+            {
+                FullName = a.FullName,
+                BookTitles = a.Book_Authors.Select(a => a.Book.Title).ToList()
+            }).FirstOrDefault();
+
+            return _author;
         }
     }
 }

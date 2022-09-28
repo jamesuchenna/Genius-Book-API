@@ -22,5 +22,12 @@ namespace GeniusBook.API.Controllers
             _authorService.AddAuthor(author);
             return Ok();
         }
+
+        [HttpGet("get-author-with-books-by-id/{id}")]
+        public IActionResult GetAuthorsWithBooks(int id)
+        {
+            var response = _authorService.GetAuthorWithBooks(id);
+            return Ok(response);
+        }
     }
 }
